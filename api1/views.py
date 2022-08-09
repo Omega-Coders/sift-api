@@ -12,11 +12,6 @@ import io
 from base64 import b64decode, b64encode
 
 
-
-
-
-# Create your views here.
-
 @api_view(['POST'])
 def ORB(request):
         # RefImg = request.data.image1
