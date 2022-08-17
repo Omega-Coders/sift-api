@@ -4,6 +4,8 @@ from django.http import HttpResponse
 from rest_framework.response import Response
 
 from rest_framework.decorators import api_view
+from rest_framework.decorators import parser_classes
+from rest_framework.parsers import JSONParser
 
 import numpy as np
 import cv2 as cv
@@ -13,6 +15,7 @@ from base64 import b64decode, b64encode
 
 
 @api_view(['POST'])
+@parser_classes([JSONParser])
 def ORB(request):
         # RefImg = request.data.image1
         # QueryImg = request.data.image2
