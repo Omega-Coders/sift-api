@@ -170,9 +170,9 @@ def SIFT(request):
         destination_image = cv.warpPerspective(imm, matrix, (w, h))
         
         img = Image.fromarray(destination_image, 'RGB')
-        si = img.resize((300,300),Image.ANTIALIAS)
+        # si = img.resize((300,300),Image.ANTIALIAS)
         buffered = io.BytesIO()
-        si.save(buffered, format="JPEG")
+        img.save(buffered, format="JPEG")
         img_str = b64encode(buffered.getvalue())
 
         final_output = {
