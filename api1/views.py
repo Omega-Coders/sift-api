@@ -101,7 +101,7 @@ def ORB(request):
 
 @api_view(['POST'])
 @parser_classes([JSONParser])
-def ORB(request):
+def SIFT(request):
             # RefImg = request.data.image1
         # QueryImg = request.data.image2
 
