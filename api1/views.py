@@ -37,9 +37,12 @@ def ORB(request):
         training_image = cv.cvtColor(np.array(pimg), cv.COLOR_BGR2RGB)
         test_image = cv.cvtColor(np.array(pimg2), cv.COLOR_BGR2RGB)
 
+        
 
         training_gray = cv.cvtColor(training_image, cv.COLOR_RGB2GRAY)
         test_gray = cv.cvtColor(test_image, cv.COLOR_RGB2GRAY)
+
+        h, w = training_gray.shape
 
         MIN_MATCH_COUNT = 10
 
@@ -77,7 +80,7 @@ def ORB(request):
 
         matrix = cv.getPerspectiveTransform(dst, pts)
 
-        destination_image = cv.warpPerspective(imm, matrix, (1600, 1600))
+        destination_image = cv.warpPerspective(imm, matrix, (w, h))
         
         img = Image.fromarray(destination_image, 'RGB')
         si = img.resize((300,300),Image.ANTIALIAS)
