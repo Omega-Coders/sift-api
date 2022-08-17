@@ -46,10 +46,16 @@ def ORB(request):
 
         MIN_MATCH_COUNT = 10
 
-        orb = cv.ORB_create()
+        # orb = cv.ORB_create()
 
-        kp1, des1 = orb.detectAndCompute(training_image,None)
-        kp2, des2 =  orb.detectAndCompute(test_image,None)
+        # kp1, des1 = orb.detectAndCompute(training_image,None)
+        # kp2, des2 =  orb.detectAndCompute(test_image,None)
+        surf = cv.xfeatures2d.SURF_create(800)
+
+        kp1, des1 = surf.detectAndCompute(training_gray, None)
+        kp2, des2 = surf.detectAndCompute(test_gray, None)
+
+        
         FLANN_INDEX_KDTREE = 1
 
         index_params = dict(algorithm = FLANN_INDEX_KDTREE, trees = 5)
