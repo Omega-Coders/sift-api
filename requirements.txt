@@ -6,7 +6,7 @@ gunicorn==20.1.0
 numpy==1.23.1
 # opencv-python==4.6.0.66
 # opencv-python-headless==4.6.0.66
-opencv-contrib-python == 4.6.0.66
+opencv-contrib-python==3.4.2.17
 
 Pillow==9.2.0
 pytz==2022.1
