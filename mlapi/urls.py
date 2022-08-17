@@ -19,5 +19,5 @@ from api1 import urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api1/', include(urls))
+    path('/', include(urls))
 ]
