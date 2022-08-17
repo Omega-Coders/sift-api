@@ -46,15 +46,15 @@ def ORB(request):
 
         MIN_MATCH_COUNT = 10
 
-        orb = cv.ORB_create()
+        # orb = cv.ORB_create()
 
-        kp1, des1 = orb.detectAndCompute(training_image,None)
-        kp2, des2 =  orb.detectAndCompute(test_image,None)
+        # kp1, des1 = orb.detectAndCompute(training_image,None)
+        # kp2, des2 =  orb.detectAndCompute(test_image,None)
 
-        # sift = cv.SIFT_create()
+        sift = cv.SIFT_create()
 
-        # kp1, des1 = sift.detectAndCompute(training_image,None)
-        # kp2, des2 = sift.detectAndCompute(test_image,None)
+        kp1, des1 = sift.detectAndCompute(training_image,None)
+        kp2, des2 = sift.detectAndCompute(test_image,None)
 
 
         FLANN_INDEX_KDTREE = 1
