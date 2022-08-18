@@ -20,7 +20,6 @@ def ORB(request):
         # RefImg = request.data.image1
         # QueryImg = request.data.image2
 
-
         # data = JSONParser().parse(request)
         # serializer = ImageSerializer(data)
         # new_data = serializer.data['im1']+serializer.data['im2']
@@ -187,3 +186,7 @@ def SIFT(request):
         return Response(final_output)
 
 
+
+
+def SURF():
+    return Response("surf")
