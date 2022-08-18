@@ -187,6 +187,3 @@ def SIFT(request):
 
 
 
-
-def SURF():
-    return Response("surf")
