@@ -13,7 +13,7 @@ from PIL import Image
 import io
 from base64 import b64decode, b64encode
 import json
-import requests
+
 # @api_view(['POST'])
 # @parser_classes([JSONParser])
 # def ORB(request):
