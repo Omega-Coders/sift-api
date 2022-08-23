@@ -12,8 +12,8 @@ import cv2 as cv
 from PIL import Image
 import io
 from base64 import b64decode, b64encode
-
-
+import json
+import requests
 # @api_view(['POST'])
 # @parser_classes([JSONParser])
 # def ORB(request):
@@ -94,33 +94,37 @@ from base64 import b64decode, b64encode
 
         # return Response(final_output)
 
+filename = "RefImg.json"
+
+@api_view(['POST'])
+def addRefImg(request):
+    data = {"refImg":  request.data.get("im1", None).split(',', 1)[1]}
+    with open(filename, "w") as file:
+        json.dump(data, file)
+    return Response({"message": "Successfully Taken"})
+
+
+
 
 
 
 @api_view(['POST'])
 @parser_classes([JSONParser])
 def SIFT(request):
-            # RefImg = request.data.image1
-        # QueryImg = request.data.image2
-
-
-        # data = JSONParser().parse(request)
-        # serializer = ImageSerializer(data)
-        # new_data = serializer.data['im1']+serializer.data['im2']
-
-
-        base64_data1 = request.data.get("im1", None).split(',', 1)[1]
+        # base64_data1 = request.data.get("im1", None).split(',', 1)[1]
+        with open(filename, "r") as file:
+            data = json.load(file)
+        base64_data1 = data["refImg"]
         base64_data2 = request.data.get("im2", None).split(',', 1)[1]
         data = b64decode(base64_data1)
         data2 = b64decode(base64_data2)
         pimg = Image.open(io.BytesIO(data))
         pimg2 = Image.open(io.BytesIO(data2))
 
-
         training_image = cv.cvtColor(np.array(pimg), cv.COLOR_BGR2RGB)
         test_image = cv.cvtColor(np.array(pimg2), cv.COLOR_BGR2RGB)
 
-        
+
 
         training_gray = cv.cvtColor(training_image, cv.COLOR_RGB2GRAY)
         test_gray = cv.cvtColor(test_image, cv.COLOR_RGB2GRAY)
