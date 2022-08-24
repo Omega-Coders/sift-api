@@ -94,14 +94,21 @@ import json
 
         # return Response(final_output)
 
-filename = "RefImg.json"
 
-@api_view(['POST'])
-def addRefImg(request):
-    data = {"refImg":  request.data.get("im1", None).split(',', 1)[1]}
-    with open(filename, "w") as file:
-        json.dump(data, file)
-    return Response({"message": "Successfully Taken"})
+
+
+
+
+
+
+# filename = "RefImg.json"
+
+# @api_view(['POST'])
+# def addRefImg(request):
+#     data = {"refImg":  request.data.get("im1", None).split(',', 1)[1]}
+#     with open(filename, "w") as file:
+#         json.dump(data, file)
+#     return Response({"message": "Successfully Taken"})
 
 
 
@@ -111,10 +118,10 @@ def addRefImg(request):
 @api_view(['POST'])
 @parser_classes([JSONParser])
 def SIFT(request):
-        # base64_data1 = request.data.get("im1", None).split(',', 1)[1]
-        with open(filename, "r") as file:
-            data = json.load(file)
-        base64_data1 = data["refImg"]
+        base64_data1 = request.data.get("im1", None).split(',', 1)[1]
+        # with open(filename, "r") as file:
+        #     data = json.load(file)
+        # base64_data1 = data["refImg"]
         base64_data2 = request.data.get("im2", None).split(',', 1)[1]
         data = b64decode(base64_data1)
         data2 = b64decode(base64_data2)
