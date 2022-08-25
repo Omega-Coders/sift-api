@@ -101,27 +101,25 @@ import json
 
 
 
-filename = "RefImg.json"
+# filename = "RefImg.json"
 
-@api_view(['POST'])
-def addRefImg(request):
-    data = {"refImg":  request.data.get("im1", None).split(',', 1)[1]}
-    with open(filename, "w") as file:
-        json.dump(data, file)
-    return Response({"message": "Successfully Taken"})
+# @api_view(['POST'])
+# def addRefImg(request):
 
-
-
+#     data = {"refImg":  request.data.get("im1", None).split(',', 1)[1]}
+#     with open(filename, "w") as file:
+#         json.dump(data, file)
+#     return Response({"message": "Successfully Taken"})
 
 
 
 @api_view(['POST'])
 @parser_classes([JSONParser])
 def SIFT(request):
-
-        with open(filename, "r") as file:
-            data = json.load(file)
-        base64_data1 = data["refImg"]
+        # with open(filename, "r") as file:
+        #     data = json.load(file)
+        # base64_data1 = data["refImg"]
+        base64_data1 = request.data.get("im1", None).split(',', 1)[1]
         base64_data2 = request.data.get("im2", None).split(',', 1)[1]
         data = b64decode(base64_data1)
         data2 = b64decode(base64_data2)
@@ -130,8 +128,6 @@ def SIFT(request):
 
         training_image = cv.cvtColor(np.array(pimg), cv.COLOR_BGR2RGB)
         test_image = cv.cvtColor(np.array(pimg2), cv.COLOR_BGR2RGB)
-
-
 
         training_gray = cv.cvtColor(training_image, cv.COLOR_RGB2GRAY)
         test_gray = cv.cvtColor(test_image, cv.COLOR_RGB2GRAY)
