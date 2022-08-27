@@ -124,7 +124,11 @@ def SIFT(request):
         # base64_data1 = data["refImg"]
         
         base64_data1 = request.data.get("im1", None).split(',', 1)[1]
+        print(base64_data1)
+
+
         base64_data2 = request.data.get("im2", None).split(',', 1)[1]
+        print(base64_data2)
         data = b64decode(base64_data1)
         data2 = b64decode(base64_data2)
         pimg = Image.open(io.BytesIO(data))
