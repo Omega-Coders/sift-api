@@ -12,12 +12,14 @@ import cv2 as cv
 from PIL import Image
 import io
 from base64 import b64decode, b64encode
-import json
+
+from django.views.decorators.csrf import csrf_exempt
+
+
 
 # @api_view(['POST'])
 # @parser_classes([JSONParser])
 # def ORB(request):
-
 
         # base64_data1 = request.data.get("im1", None).split(',', 1)[1]
         # base64_data2 = request.data.get("im2", None).split(',', 1)[1]
@@ -112,6 +114,7 @@ import json
 #     return Response({"message": "Successfully Taken"})
 
 
+@csrf_exempt
 
 @api_view(['POST'])
 @parser_classes([JSONParser])
@@ -119,6 +122,7 @@ def SIFT(request):
         # with open(filename, "r") as file:
         #     data = json.load(file)
         # base64_data1 = data["refImg"]
+        
         base64_data1 = request.data.get("im1", None).split(',', 1)[1]
         base64_data2 = request.data.get("im2", None).split(',', 1)[1]
         data = b64decode(base64_data1)
@@ -140,7 +144,6 @@ def SIFT(request):
 
         kp1, des1 = sift.detectAndCompute(training_image,None)
         kp2, des2 = sift.detectAndCompute(test_image,None)
-
 
         FLANN_INDEX_KDTREE = 1
 
@@ -183,6 +186,7 @@ def SIFT(request):
         final_output = {
             "Transformed Image": img_str
         }
+
 
         return Response(final_output)
 
