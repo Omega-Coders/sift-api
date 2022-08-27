@@ -5,9 +5,9 @@ from . import views
 
 urlpatterns = [
     # path("orb/", views.ORB),
-    path("sift/add-test-img/", views.SIFT),
-    path("sift/add-ref-img/", views.addRefImg),
-    # path("sift/", views.SIFT)
+    # path("sift/add-test-img/", views.SIFT),
+    # path("sift/add-ref-img/", views.addRefImg),
+    path("sift/", views.SIFT)
 ]
 
 
